@@ -1,0 +1,55 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  /* disable zoom on double tap:
+  https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
+}
+
+#wrapper {
+  width: 500%;
+  position: relative;
+}
+
+button {
+  position: fixed;
+}
+
+#back {
+  left: 0;
+}
+
+#forward {
+  right: 0;
+}
+
+section {
+  height: 100vh;
+  width: 20%;
+  float: left;
+}
+
+#sec1 {
+  background: red;
+}
+
+section:nth-child(2) {
+  background: green;
+}
+
+section:nth-child(3) {
+  background: blue;
+}
+
+section:nth-child(4) {
+  background: pink;
+}
+
+section:nth-child(5) {
+  background: black;
+}
