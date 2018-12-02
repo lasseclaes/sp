@@ -1,37 +1,26 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 body {
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  /* disable zoom on double tap:
-  https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
 }
 
 #wrapper {
-  width: 500%;
-  position: relative;
+  width: 98%;
+  margin: 0 auto;
 }
 
-button {
-  position: fixed;
-}
-
-#back {
-  left: 0;
-}
-
-#forward {
-  right: 0;
+header {
+  width: 100%;
 }
 
 section {
-  height: 100vh;
-  width: 20%;
-  float: left;
+  width: 100%;
 }
 
 #sec1 {
@@ -52,4 +41,216 @@ section:nth-child(4) {
 
 section:nth-child(5) {
   background: black;
+}
+
+article {
+  background: yellow;
+}
+
+aside {
+  background: orange;
+}
+
+footer {
+  background: red;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  /*200% af default på 16px=32px */
+}
+
+h1 {
+  font-size: 4rem;
+  /* 2*32 = 64px */
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+section,
+article,
+p {
+  font-size: 1rem;
+}
+
+i {
+  cursor: pointer;
+}
+
+.rotate {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.rotate.down {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+figure {
+  /*width: 50%;
+  float: right;
+  max-width: 200px;*/
+}
+
+#sec5 {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: auto;
+}
+#sec5 figure {
+  margin: 0;
+  position: relative;
+}
+#sec5 figure img {
+  background: red;
+  border-radius: 5px;
+}
+#sec5 figure figcaption {
+  position: absolute;
+  color: white;
+  bottom: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: none;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  background: deepskyblue;
+  /*display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /*-webkit-flex-flow: column wrap;*/
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  padding: 0;
+}
+nav ul a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  display: block;
+  padding: 1em;
+  /*padding: 10px;*/
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: red;
+}
+
+#menu-toggle {
+  position: fixed;
+  bottom: 2vw;
+  right: 3vw;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 7px 3px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 575.98px) {
+  ul li:last-of-type a {
+    border-bottom: none;
+  }
+}
+@media (min-width: 576px) {
+  body {
+    background: pink;
+  }
+
+  nav {
+    position: static;
+    display: block;
+  }
+  nav ul {
+    /*-webkit-flex-flow: row wrap;*/
+    /* Mangler der ikke...
+    flex-flow: row wrap;
+...og hvordan med IE10?:
+-ms-flex-flow: row wrap;
+*/
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  nav ul a {
+    margin-left: 1em;
+  }
+  nav ul a:hover {
+    background: green;
+  }
+
+  #menu-toggle {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  nav ul {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    /* over ruler flex-end */
+    /*padding: 0 10%;*/
+  }
+  nav ul a {
+    margin: 0;
+  }
+
+  header {
+    grid-area: header-a;
+  }
+
+  main {
+    grid-area: main-a;
+    display: inline-grid;
+  }
+
+  article {
+    grid-area: article-a;
+  }
+
+  aside {
+    grid-area: sidebar-a;
+  }
+
+  footer {
+    grid-area: footer-a;
+  }
+
+  #wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-rows: auto;
+    grid-template-areas: "header-a header-a header-a header-a" "main-a main-a . sidebar-a" "footer-a footer-a footer-a footer-a";
+  }
+}
+@media (min-width: 1200px) {
+  #wrapper {
+    max-width: 1200px;
+  }
 }

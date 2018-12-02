@@ -1,47 +1,282 @@
-*{
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+* {
   box-sizing: border-box;
 }
 
-body{
-  overflow-x: hidden;
+body {
   margin: 0;
   padding: 0;
-  /* disable zoom on double tap:
-  https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
-  // men det virker sløjt touch-action: manipulation;
 }
 
-#wrapper{
-  width: 500%;
-  position: relative;
+#wrapper {
+  width: 98%;
+  margin: 0 auto;
 }
-button{
-  position: fixed;
+
+header {
+  width: 100%;
 }
-#back{
-  left: 0;
+
+button {
+
 }
-#forward{
-  right: 0;
+
+//dev
+article {
 }
-section{
-  height: 100vh;
-  width: 20%;
-  float: left;
+aside {
+  //height: 30px;
 }
-#sec1{
+section {
+  width: 100%;
+  //height: 100px;
+}
+
+
+#sec1 {
   background: red;
 }
-section:nth-child(2){
+
+section:nth-child(2) {
   background: green;
 }
-section:nth-child(3){
+
+section:nth-child(3) {
   background: blue;
 }
 
-section:nth-child(4){
+section:nth-child(4) {
   background: pink;
 }
-section:nth-child(5){
+
+section:nth-child(5) {
   background: black;
+}
+
+article {
+  background: yellow;
+}
+
+aside {
+  background: orange;
+}
+
+footer {
+  background: red;
+}
+//end dev
+
+//fonts
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%; /*200% af default på 16px=32px */
+}
+
+body{
+
+}
+
+h1 {
+  font-size: 4rem;
+  /* 2*32 = 64px */
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+section,
+article,
+p {
+  font-size: 1rem;
+}
+
+//icons / fa
+i {
+  cursor: pointer;
+}
+.rotate {
+  transition: 0.2s;
+}
+.rotate.down {
+  transform: rotate(90deg);
+}
+//images
+figure {
+  //margin: 0 0 10px 10px;
+  /*width: 50%;
+  float: right;
+  max-width: 200px;*/
+  figcaption{
+    //padding-right: 10px;
+  }
+}
+
+#sec5{
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: auto;
+  figure{
+    margin: 0;
+    position: relative;
+    img{
+      background: red;
+      border-radius: 5px;
+    }
+    figcaption{
+      position: absolute;
+      color: white;
+      bottom: 0;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+//navigation
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: none;
+  ul {
+    list-style: none;
+    margin: 0;
+    background: deepskyblue;
+    /*display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;*/
+    display: flex;
+    /*-webkit-flex-flow: column wrap;*/
+    flex-flow: column wrap;
+    padding: 0;
+    a {
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      display: block;
+      padding: 1em;
+      /*padding: 10px;*/
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: red;
+     }
+  }
+}
+
+#menu-toggle {
+  position: fixed;
+  bottom: 2vw;
+  right: 3vw;
+  //opacity: 0.5;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  padding: 7px 3px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 575.98px) {
+
+//navigation
+  ul li:last-of-type a {
+    border-bottom: none;
+  }
+
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+  body{
+    background: pink;
+  }
+//navigation
+  nav {
+    position: static;
+    display: block;
+    ul {
+        /*-webkit-flex-flow: row wrap;*/
+        /* Mangler der ikke...
+        flex-flow: row wrap;
+    ...og hvordan med IE10?:
+    -ms-flex-flow: row wrap;
+    */
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        a {
+          margin-left: 1em;
+          &:hover{
+            background: green;
+          }
+        }
+     }
+   }
+   #menu-toggle {
+     display: none;
+   }
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+//navigation
+  nav{
+    ul {
+        justify-content: space-around; /* over ruler flex-end */
+        /*padding: 0 10%;*/
+        a {
+          margin: 0;
+        }
+     }
+  }
+//grid
+  header {
+    grid-area: header-a;
+  }
+  main {
+    grid-area: main-a;
+    display: inline-grid;
+  }
+  article {
+    grid-area: article-a;
+  }
+  aside {
+    grid-area: sidebar-a;
+  }
+  footer {
+    grid-area: footer-a;
+  }
+  #wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "header-a header-a header-a header-a"
+    "main-a main-a . sidebar-a"
+    "footer-a footer-a footer-a footer-a";
+  }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+  #wrapper {
+    max-width: 1200px;
+  }
+
 }
